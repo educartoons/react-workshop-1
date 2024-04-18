@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import Button from "./Button"
 import AddTask from "./AddTask"
-import Task from "./Task"
 import TaskList from "./TaskList"
 
 export type TaskType = {
