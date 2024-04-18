@@ -1,5 +1,4 @@
 import Kanban from "./components/Kanban"
-import Login from "./components/Login"
 
 export default function App() {
   // JSX
