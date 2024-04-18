@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Build a React Component",
+    "description": "Create a reusable React component for a common UI element, like a button or modal.",
+    "id": 1,
+    "difficulty": "easy"
+  },
+  {
+    "title": "Implement React Hooks",
+    "description": "Refactor an existing class component to use React hooks for state management and lifecycle methods.",
+    "id": 2,
+    "difficulty": "medium"
+  },
+  {
+    "title": "Develop a React Application",
+    "description": "Build a complete React application with multiple components, routing, and state management using Redux or Context API.",
+    "id": 3,
+    "difficulty": "hard"
+  },
+  {
+    "title": "Optimize React Performance",
+    "description": "Identify and address performance bottlenecks in a React application by implementing techniques like code splitting, memoization, and virtualization.",
+    "id": 4,
+    "difficulty": "hard"
+  },
+  {
+    "title": "Integrate React with an API",
+    "description": "Fetch data from a third-party API and display the results in a React component.",
+    "id": 5,
+    "difficulty": "medium"
+  }
+]

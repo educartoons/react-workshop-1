@@ -17,9 +17,9 @@ export default function Login() {
   }
 
   return (
-    <div className="bg-white py-12 px-4 w-[300px]">
-      <h2 className="text-2xl font-semibold mb-4">Hi, Welcome! 👋🏽</h2>
-      <div className="mb-2">
+    <div className="bg-white py-16 px-4 w-[350px]">
+      <h2 className="text-2xl font-semibold mb-6">Hi, Welcome! 👋🏽</h2>
+      <div className="mb-4">
         <Input
           onChange={handleChange}
           value={form.username}
@@ -37,17 +37,17 @@ export default function Login() {
           name="password"
         />
       </div>
-      <div className="mt-1">
-        <p className="text-xs text-right">Forgot Password?</p>
+      <div className="mt-2">
+        <p className="text-sm text-right">Forgot Password?</p>
       </div>
       <div className="mt-6">
-        <button className="block text-sm bg-black text-white py-2 w-full rounded">
+        <button className="block text-sm bg-black text-white py-3 w-full rounded">
           Log in
         </button>
       </div>
       <div className="mt-10">
-        <p className="text-xs text-center text-zinc-500">
-          Don't have an account ?
+        <p className="text-sm text-center text-zinc-500">
+          Don't have an account ?{" "}
           <a className="text-black font-semibold" href="">
             Sign up
           </a>

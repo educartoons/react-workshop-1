@@ -1,10 +1,12 @@
-import Login from "./components/Login"
+import Kanban from "./components/Kanban"
+import { KanbanProvider } from "./context/kanban-context"
 
 export default function App() {
-  // JSX
   return (
-    <div className="w-screen h-screen bg-[#EFEFEF] flex items-center justify-center">
-      <Login />
-    </div>
+    <KanbanProvider>
+      <div className="">
+        <Kanban />
+      </div>
+    </KanbanProvider>
   )
 }
