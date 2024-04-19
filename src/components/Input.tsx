@@ -19,7 +19,7 @@ export default function Input({
     <label htmlFor={name} className="block">
       <span className="text-sm">{placeholder}</span>
       <input
-        className="block border border-[#EFEFEF] rounded px-2 py-1 text-sm w-full"
+        className="block border border-[#EFEFEF] rounded px-2 py-2 text-sm w-full"
         value={value}
         onChange={onChange}
         id={name}
