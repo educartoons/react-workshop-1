@@ -3,6 +3,8 @@ import Modalbox from "./Modalbox"
 import Input from "./Input"
 import Button from "./Button"
 import { TaskType } from "./Kanban"
+import Select from "./Select"
+import { LEVELS } from "../utils/consts"
 
 type AddTaskProps = {
   onClose: () => void
@@ -19,7 +21,9 @@ export default function AddTask({ onClose, onAddTask }: AddTaskProps) {
   const [form, setForm] = useState(initForm)
   const divRef = useRef(null)
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setForm({
       ...form,
       [event.target.name]: event.target.value,
@@ -48,12 +52,11 @@ export default function AddTask({ onClose, onAddTask }: AddTaskProps) {
           />
         </div>
         <div className="mb-7">
-          <Input
-            value={form.difficulty}
-            placeholder="Difficulty"
-            name="difficulty"
-            type="text"
+          <Select
             onChange={handleChange}
+            items={LEVELS}
+            label="Difficulty"
+            name="difficulty"
           />
         </div>
         <Button onClick={handleAdd}>Add</Button>
