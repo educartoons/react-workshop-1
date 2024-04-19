@@ -1,4 +1,4 @@
-type Difficulties = keyof typeof variants
+export type Difficulties = keyof typeof variants
 
 type DiffultyTag = {
   tag: Difficulties

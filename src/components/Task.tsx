@@ -1,5 +1,5 @@
 import Button from "./Button"
-import DiffultyTag from "./DifficultyTag"
+import DiffultyTag, { Difficulties } from "./DifficultyTag"
 import { TaskType, TaskTypes } from "./Kanban"
 
 type TaskProps = {
@@ -15,7 +15,7 @@ export default function Task({ task, handleMoveTask }: TaskProps) {
   return (
     <div className="rounded-md bg-white mb-2 px-4 py-4">
       <h2 className="font-medium mb-3">{task.title}</h2>
-      <DiffultyTag tag={task.difficulty} />
+      <DiffultyTag tag={task.difficulty as Difficulties} />
       <div className="mt-4">
         <Button
           variant="icon"
