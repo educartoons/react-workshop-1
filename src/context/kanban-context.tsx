@@ -13,10 +13,12 @@ const initKanban: State = {
   done: [],
 }
 
+type Level = "easy" | "medium" | "hard"
+
 export type Task = {
   id: string
   title: string
-  level: "easy" | "medium" | "hard"
+  level: Level
 }
 
 type State = {
@@ -52,13 +54,13 @@ const KanbanContext = createContext<
   | undefined
 >(undefined)
 
-function kanbanReducer(state: State, action: Action) {
+function kanbanReducer(state: State, action: Action): State {
   switch (action.type) {
     case "addTask": {
       const newTask = {
         id: crypto.randomUUID() as string,
         title: action.payload.title,
-        level: action.payload.level,
+        level: action.payload.level as Level,
       }
       return {
         ...state,
@@ -67,7 +69,7 @@ function kanbanReducer(state: State, action: Action) {
     }
     case "moveTask": {
       const { origin, target, taskId } = action.payload
-      if (origin === null || target === null) return
+      if (origin === null || target === null) return state
       const originList = state[origin].filter((task) => task.id !== taskId)
       const targetList = state[target].concat(
         state[origin].find((task) => task.id === taskId)!
