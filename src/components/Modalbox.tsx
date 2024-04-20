@@ -27,6 +27,7 @@ export default function Modalbox({ children, onClose, divRef }: ModalboxProps) {
       window.removeEventListener("keydown", handleKeypress)
       document.removeEventListener("mousedown", handleClickOutside)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

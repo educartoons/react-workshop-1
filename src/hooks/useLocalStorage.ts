@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
-export default function useLocalStorage(key: string, initData: any) {
-  const [state, setState] = useState(() => {
+export default function useLocalStorage<T>(key: string, initData: T) {
+  const [state, setState] = useState<T>(() => {
     try {
       const data = window.localStorage.getItem(key)
       if (data) {
@@ -13,7 +13,7 @@ export default function useLocalStorage(key: string, initData: any) {
     }
   })
 
-  const handleWriteData = (data: any) => {
+  const handleWriteData = (data: T) => {
     try {
       window.localStorage.setItem(key, JSON.stringify(data))
     } catch {
@@ -23,7 +23,8 @@ export default function useLocalStorage(key: string, initData: any) {
 
   useEffect(() => {
     handleWriteData(state)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state])
 
-  return [state, setState]
+  return [state, setState] as const
 }

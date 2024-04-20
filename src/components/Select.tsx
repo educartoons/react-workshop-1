@@ -16,8 +16,11 @@ export default function Select({ items, label, name, ...props }: SelectProps) {
         id={name}
         {...props}
       >
-        {items.map((item) => (
-          <option value={item}>{item}</option>
+        <option selected>Choose a level</option>
+        {items.map((item, index) => (
+          <option key={index} value={item}>
+            {item}
+          </option>
         ))}
       </select>
     </label>

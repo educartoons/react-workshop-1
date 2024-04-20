@@ -1,8 +1,8 @@
-type Difficulty = keyof typeof variants
+type Level = keyof typeof variants
 
 type DifficultyTagProps = {
   children: React.ReactNode
-  difficulty: Difficulty
+  level: Level
 }
 
 const variants = {
@@ -12,9 +12,6 @@ const variants = {
   hard: "bg-red-200 text-red-500 inline-block px-3 py-1 rounded text-xs",
 }
 
-export default function DifficultyTag({
-  children,
-  difficulty,
-}: DifficultyTagProps) {
-  return <span className={variants[difficulty]}>{children}</span>
+export default function LevelTag({ children, level }: DifficultyTagProps) {
+  return <span className={variants[level]}>{children}</span>
 }

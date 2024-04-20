@@ -2,13 +2,12 @@ import { ChangeEvent, useRef, useState } from "react"
 import Modalbox from "./Modalbox"
 import Input from "./Input"
 import Button from "./Button"
-import { TaskType } from "./Kanban"
 import Select from "./Select"
 import { LEVELS } from "../utils/consts"
+import { useKanbanContext } from "../context/kanban-context"
 
 type AddTaskProps = {
   onClose: () => void
-  onAddTask: (task: TaskType) => void
 }
 
 const initForm = {
@@ -17,9 +16,10 @@ const initForm = {
   difficulty: "",
 }
 
-export default function AddTask({ onClose, onAddTask }: AddTaskProps) {
+export default function AddTask({ onClose }: AddTaskProps) {
   const [form, setForm] = useState(initForm)
   const divRef = useRef(null)
+  const { dispatch } = useKanbanContext()
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -31,9 +31,12 @@ export default function AddTask({ onClose, onAddTask }: AddTaskProps) {
   }
 
   const handleAdd = () => {
-    onAddTask({
-      ...form,
-      id: crypto.randomUUID(),
+    dispatch({
+      type: "addTask",
+      payload: {
+        title: form.title,
+        level: form.difficulty,
+      },
     })
     onClose()
   }

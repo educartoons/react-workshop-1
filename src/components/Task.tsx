@@ -1,42 +1,50 @@
+import { useKanbanContext } from "../context/kanban-context"
+import type { Task, TaskTypes } from "../context/kanban-context"
 import Button from "./Button"
-import DifficultyTag from "./DifficultyTag"
-import { TaskType, taskTypes } from "./Kanban"
+import LevelTag from "./LevelTag"
 
 type TaskProps = {
-  task: TaskType
-  moveTask: (
-    taskId: string,
-    origin: taskTypes | null,
-    target: taskTypes | null
-  ) => void
-  namePrevList: taskTypes | null
-  nameCurrentList: taskTypes
-  nameNextList: taskTypes | null
+  task: Task
+  namePrevList: TaskTypes | null
+  nameCurrentList: TaskTypes
+  nameNextList: TaskTypes | null
 }
 
 export default function Task({
   task,
-  moveTask,
   namePrevList,
   nameCurrentList,
   nameNextList,
 }: TaskProps) {
+  const { dispatch } = useKanbanContext()
   const handleClickNext = () => {
-    moveTask(task.id, nameCurrentList, nameNextList)
+    dispatch({
+      type: "moveTask",
+      payload: {
+        taskId: task.id,
+        origin: nameCurrentList,
+        target: nameNextList,
+      },
+    })
   }
 
   const handleClickPrev = () => {
-    moveTask(task.id, nameCurrentList, namePrevList)
+    dispatch({
+      type: "moveTask",
+      payload: {
+        taskId: task.id,
+        origin: nameCurrentList,
+        target: namePrevList,
+      },
+    })
   }
 
   return (
     <div className="rounded-md bg-white mb-2 px-4 py-4">
       <h2>{task.title}</h2>
-      {task.difficulty ? (
+      {task.level ? (
         <div className="mt-3">
-          <DifficultyTag difficulty={task.difficulty}>
-            {task.difficulty}
-          </DifficultyTag>
+          <LevelTag level={task.level}>{task.level}</LevelTag>
         </div>
       ) : null}
       <div className="mt-3">

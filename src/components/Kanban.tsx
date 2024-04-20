@@ -1,57 +1,12 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Button from "./Button"
 import AddTask from "./AddTask"
 import TaskList from "./TaskList"
-import useLocalStorage from "../hooks/useLocalStorage"
-
-export type TaskType = {
-  id: string
-  title: string
-  difficulty: string
-}
-
-export type taskTypes = keyof KanbanType
-
-type KanbanType = {
-  todo: TaskType[]
-  inprogress: TaskType[]
-  done: TaskType[]
-}
-
-const initKanban = {
-  todo: [],
-  inprogress: [],
-  done: [],
-}
+import { useKanbanContext } from "../context/kanban-context"
 
 export default function Kanban() {
-  const [kanban, setKanban] = useLocalStorage("kanban", initKanban)
+  const { state: kanban } = useKanbanContext()
   const [openModal, setModal] = useState(false)
-
-  const handleAddTask = (task: TaskType) => {
-    setKanban({
-      ...kanban,
-      todo: [...kanban.todo, task],
-    })
-  }
-
-  const moveTask = (
-    taskId: string,
-    origin: taskTypes | null,
-    target: taskTypes | null
-  ) => {
-    if (origin === null || target === null) return
-
-    const originList = kanban[origin].filter((task) => task.id !== taskId)
-    const targetList = kanban[target].concat(
-      kanban[origin].find((task) => task.id === taskId)!
-    )
-    setKanban({
-      ...kanban,
-      [origin]: originList,
-      [target]: targetList,
-    })
-  }
 
   return (
     <div className="w-[1200px] mx-auto pt-5">
@@ -63,7 +18,6 @@ export default function Kanban() {
           nameNextList="inprogress"
           title="To Do"
           tasks={kanban.todo}
-          moveTask={moveTask}
         />
         <TaskList
           namePrevList="todo"
@@ -71,7 +25,6 @@ export default function Kanban() {
           nameNextList="done"
           title="In Progress"
           tasks={kanban.inprogress}
-          moveTask={moveTask}
         />
         <TaskList
           namePrevList="inprogress"
@@ -79,7 +32,6 @@ export default function Kanban() {
           nameNextList={null}
           title="Done"
           tasks={kanban.done}
-          moveTask={moveTask}
         />
       </div>
       <Button
@@ -89,9 +41,7 @@ export default function Kanban() {
       >
         Add Task
       </Button>
-      {openModal ? (
-        <AddTask onAddTask={handleAddTask} onClose={() => setModal(false)} />
-      ) : null}
+      {openModal ? <AddTask onClose={() => setModal(false)} /> : null}
     </div>
   )
 }

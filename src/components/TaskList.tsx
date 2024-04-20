@@ -1,23 +1,18 @@
-import { TaskType, taskTypes } from "./Kanban"
 import Task from "./Task"
+import { TaskTypes } from "../context/kanban-context"
+import type { Task as TaskType } from "../context/kanban-context"
 
 type TaskListProps = {
   title: string
   tasks: TaskType[]
-  moveTask: (
-    taskId: string,
-    origin: taskTypes | null,
-    target: taskTypes | null
-  ) => void
-  namePrevList: taskTypes | null
-  nameCurrentList: taskTypes
-  nameNextList: taskTypes | null
+  namePrevList: TaskTypes | null
+  nameCurrentList: TaskTypes
+  nameNextList: TaskTypes | null
 }
 
 export default function TaskList({
   tasks,
   title,
-  moveTask,
   namePrevList,
   nameCurrentList,
   nameNextList,
@@ -29,7 +24,6 @@ export default function TaskList({
         <Task
           key={task.id}
           task={task}
-          moveTask={moveTask}
           namePrevList={namePrevList}
           nameCurrentList={nameCurrentList}
           nameNextList={nameNextList}
