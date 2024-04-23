@@ -42,6 +42,11 @@ type Action =
         origin: TaskTypes | null
         target: TaskTypes | null
       }
+    } | {
+      type: "filterTasks"
+      payload: {
+        filter: string;
+      }
     }
 
 type Dispatch = (action: Action) => void

@@ -3,6 +3,7 @@ import Button from "./Button"
 import AddTask from "./AddTask"
 import TaskList from "./TaskList"
 import { useKanbanContext } from "../context/kanban-context"
+import FilterTasks from "./FilterTasks"
 
 export default function Kanban() {
   const { state: kanban } = useKanbanContext()
@@ -11,6 +12,7 @@ export default function Kanban() {
   return (
     <div className="w-[1200px] mx-auto pt-5">
       <h2 className="text-2xl font-medium mb-4">🤟 Let's kick off the day</h2>
+      <FilterTasks />
       <div className="grid grid-cols-3 gap-3">
         <TaskList
           namePrevList={null}

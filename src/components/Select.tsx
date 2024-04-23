@@ -9,7 +9,7 @@ type SelectProps = {
 export default function Select({ items, label, name, ...props }: SelectProps) {
   return (
     <label htmlFor={name}>
-      <span>{label}</span>
+      <span className="text-sm">{label}</span>
       <select
         className="block border border-[#EFEFEF] rounded px-2 py-2 text-sm w-full"
         name={name}

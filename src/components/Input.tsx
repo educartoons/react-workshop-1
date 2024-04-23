@@ -2,7 +2,8 @@ import { ChangeEvent } from "react"
 
 type InputProps = {
   type: "text" | "password" | "number"
-  placeholder: string
+  label?: boolean;
+  placeholder?: string
   name: string
   value: string
   onChange: (event: ChangeEvent<HTMLInputElement>) => void
@@ -13,11 +14,12 @@ export default function Input({
   placeholder,
   name,
   value,
+  label = true,
   onChange,
 }: InputProps) {
   return (
     <label htmlFor={name} className="block">
-      <span className="text-sm">{placeholder}</span>
+      {label ? <span className="text-sm">{placeholder}</span> : null}
       <input
         className="block border border-[#EFEFEF] rounded px-2 py-2 text-sm w-full"
         value={value}
