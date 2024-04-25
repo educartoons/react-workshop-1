@@ -1,4 +1,5 @@
 import { ChangeEvent, useRef, useState } from "react"
+import { useSnackbar } from "notistack"
 import Modalbox from "./Modalbox"
 import Input from "./Input"
 import Button from "./Button"
@@ -20,6 +21,7 @@ export default function AddTask({ onClose }: AddTaskProps) {
   const [form, setForm] = useState(initForm)
   const divRef = useRef(null)
   const { dispatch } = useKanbanContext()
+  const { enqueueSnackbar } = useSnackbar()
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -38,6 +40,7 @@ export default function AddTask({ onClose }: AddTaskProps) {
         level: form.difficulty,
       },
     })
+    enqueueSnackbar("The new task was added", { variant: "success" })
     onClose()
   }
 
