@@ -47,40 +47,11 @@ const tasksSlice = createSlice({
       const { origin, target, task } = action.payload
 
       if (origin !== null && target !== null) {
-        switch (origin) {
-          case "todo":
-            state.tasks.todo = state.tasks.todo.filter(
-              (item) => item.id !== task.id
-            )
-            console.log(state.tasks.todo)
-            break
-          case "inprogress":
-            state.tasks.inprogress = state.tasks.inprogress.filter(
-              (item) => item.id !== task.id
-            )
-            break
-          case "done":
-            state.tasks.done = state.tasks.done.filter(
-              (item) => item.id !== task.id
-            )
-            break
-          default:
-            break
-        }
+        state.tasks[origin] = state.tasks[origin].filter(
+          (item) => item.id !== task.id
+        )
 
-        switch (target) {
-          case "todo":
-            state.tasks.todo = state.tasks.todo.concat(task)
-            break
-          case "inprogress":
-            state.tasks.inprogress = state.tasks.inprogress.concat(task)
-            break
-          case "done":
-            state.tasks.done = state.tasks.done.concat(task)
-            break
-          default:
-            break
-        }
+        state.tasks[target] = state.tasks[target].concat(task)
       }
     },
   },
