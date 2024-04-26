@@ -1,7 +1,8 @@
-import { useKanbanContext } from "../context/kanban-context"
+import { useDispatch } from "react-redux"
 import type { Task, TaskTypes } from "../context/kanban-context"
 import Button from "./Button"
 import LevelTag from "./LevelTag"
+import { moveTask } from "../store/kanbanSlice"
 
 type TaskProps = {
   task: Task
@@ -16,27 +17,26 @@ export default function Task({
   nameCurrentList,
   nameNextList,
 }: TaskProps) {
-  const { dispatch } = useKanbanContext()
+  const dispatch = useDispatch()
+
   const handleClickNext = () => {
-    dispatch({
-      type: "moveTask",
-      payload: {
-        taskId: task.id,
+    dispatch(
+      moveTask({
+        task: task,
         origin: nameCurrentList,
         target: nameNextList,
-      },
-    })
+      })
+    )
   }
 
   const handleClickPrev = () => {
-    dispatch({
-      type: "moveTask",
-      payload: {
-        taskId: task.id,
+    dispatch(
+      moveTask({
+        task: task,
         origin: nameCurrentList,
         target: namePrevList,
-      },
-    })
+      })
+    )
   }
 
   return (

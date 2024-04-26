@@ -1,5 +1,9 @@
 import { ChangeEvent, useState } from "react"
+import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
+import { useSnackbar } from "notistack"
 import Input from "./Input"
+import { login } from "../store/userSlice"
 
 const initForm = {
   username: "",
@@ -8,12 +12,24 @@ const initForm = {
 
 export default function Login() {
   const [form, setForm] = useState(initForm)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { enqueueSnackbar } = useSnackbar()
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setForm({
       ...form,
       [event.target.name]: event.target.value,
     })
+  }
+
+  const handleLogin = () => {
+    dispatch(login({ name: "educartoons" }))
+    enqueueSnackbar(`Welcome ${form.username}`, {
+      variant: "info",
+      anchorOrigin: { horizontal: "right", vertical: "top" },
+    })
+    navigate("/")
   }
 
   return (
@@ -41,7 +57,10 @@ export default function Login() {
         <p className="text-xs text-right">Forgot Password?</p>
       </div>
       <div className="mt-6">
-        <button className="block text-sm bg-black text-white py-2 w-full rounded">
+        <button
+          onClick={handleLogin}
+          className="block text-sm bg-black text-white py-2 w-full rounded"
+        >
           Log in
         </button>
       </div>

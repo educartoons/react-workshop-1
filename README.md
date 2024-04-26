@@ -29,3 +29,21 @@ pnpm add -D class-variance-authority
 ```
 
 Watch out! The documentions is not updated !
+
+## In order to manage routes we will use: react-router-dom
+
+```
+pnpm add react-router dom
+```
+
+## In order to manage a global state we will use redux and redux/toolkit
+
+```
+pnpm add @reduxjs/toolkit react-redux
+```
+
+## to debug the store of redux we need to install the next addon to Google Chrome
+
+```
+redux devtools
+```

@@ -1,13 +1,20 @@
-import Kanban from "./components/Kanban"
+import { BrowserRouter } from "react-router-dom"
+import { SnackbarProvider } from "notistack"
+import { Provider } from "react-redux"
 import { KanbanContextProvider } from "./context/kanban-context"
+import { store } from "./store/store"
+import Router from "./Router"
 
 export default function App() {
   return (
-    // <div className="w-screen h-screen bg-[#EFEFEF] flex items-center justify-center">
-    //   <Login />
-    // </div>
-    <KanbanContextProvider>
-      <div className="w-screen h-screen bg-[#EFEFEF]">{<Kanban />}</div>
-    </KanbanContextProvider>
+    <Provider store={store}>
+      <BrowserRouter>
+        <SnackbarProvider>
+          <KanbanContextProvider>
+            <Router />
+          </KanbanContextProvider>
+        </SnackbarProvider>
+      </BrowserRouter>
+    </Provider>
   )
 }

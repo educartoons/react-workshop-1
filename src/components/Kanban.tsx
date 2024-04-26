@@ -1,12 +1,19 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useSelector, useDispatch } from "react-redux"
 import Button from "./Button"
 import AddTask from "./AddTask"
 import TaskList from "./TaskList"
-import { useKanbanContext } from "../context/kanban-context"
+import { RootState } from "../store/store"
+import { loadTasksFromLocalStorage } from "../store/kanbanSlice"
 
 export default function Kanban() {
-  const { state: kanban } = useKanbanContext()
+  const kanban = useSelector((state: RootState) => state.kanban)
   const [openModal, setModal] = useState(false)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(loadTasksFromLocalStorage())
+  }, [])
 
   return (
     <div className="w-[1200px] mx-auto pt-5">
@@ -17,21 +24,21 @@ export default function Kanban() {
           nameCurrentList="todo"
           nameNextList="inprogress"
           title="To Do"
-          tasks={kanban.todo}
+          tasks={kanban.tasks.todo}
         />
         <TaskList
           namePrevList="todo"
           nameCurrentList="inprogress"
           nameNextList="done"
           title="In Progress"
-          tasks={kanban.inprogress}
+          tasks={kanban.tasks.inprogress}
         />
         <TaskList
           namePrevList="inprogress"
           nameCurrentList="done"
           nameNextList={null}
           title="Done"
-          tasks={kanban.done}
+          tasks={kanban.tasks.done}
         />
       </div>
       <Button
