@@ -7,9 +7,7 @@ import NotFoundPage from "./pages/NotFoundPage"
 export default function Router() {
   return (
     <Routes>
-      <Route path="/" element={<ProtectedRoute />}>
-        <Route path="/" element={<HomePage />} />
-      </Route>
+      <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

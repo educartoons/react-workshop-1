@@ -1,3 +1,4 @@
+import { ChangeEvent, memo } from "react"
 import Task from "./Task"
 import { TaskTypes } from "../context/kanban-context"
 import type { Task as TaskType } from "../context/kanban-context"
@@ -8,15 +9,18 @@ type TaskListProps = {
   namePrevList: TaskTypes | null
   nameCurrentList: TaskTypes
   nameNextList: TaskTypes | null
+  handleChange?: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-export default function TaskList({
+function TaskList({
   tasks,
   title,
   namePrevList,
   nameCurrentList,
   nameNextList,
+  handleChange,
 }: TaskListProps) {
+  console.log("Rendering TaskList")
   return (
     <div>
       <h2 className="font-semibold mb-3">{title}</h2>
@@ -32,3 +36,7 @@ export default function TaskList({
     </div>
   )
 }
+
+const TaskListMemo = memo(TaskList)
+
+export default TaskListMemo

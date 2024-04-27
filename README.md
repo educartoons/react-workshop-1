@@ -47,3 +47,21 @@ pnpm add @reduxjs/toolkit react-redux
 ```
 redux devtools
 ```
+
+## For performance and avoid re-renderings we use the next hooks and functions
+
+- [x] useMemo
+- [x] useCallback
+- [x] memo
+
+## Hooks
+
+- [x] useState
+- [x] useEffect
+- [x] useRef
+- [x] useReducer
+- [x] useContext
+- [x] useMemo
+- [x] useCallback
+
+- [x] customHook
