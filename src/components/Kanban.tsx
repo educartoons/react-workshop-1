@@ -6,10 +6,12 @@ import TaskList from "./TaskList"
 import { RootState } from "../store/store"
 import { loadTasksFromLocalStorage } from "../store/kanbanSlice"
 import { items } from "../utils/utils"
+import useDebounce from "../hooks/useDebounce"
 
 export default function Kanban() {
   const kanban = useSelector((state: RootState) => state.kanban)
   const [filter, setFilter] = useState("")
+  const searchTerm = useDebounce(filter, 500)
   const [openModal, setModal] = useState(false)
   const dispatch = useDispatch()
 
@@ -18,14 +20,17 @@ export default function Kanban() {
   }, [])
 
   useEffect(() => {
+    // call to API
+    console.log("Calling to API")
+  }, [searchTerm])
+
+  useEffect(() => {
     dispatch(loadTasksFromLocalStorage())
   }, [])
 
   return (
     <div className="w-[1200px] mx-auto pt-5">
-      <h2 className="text-2xl font-medium mb-4">
-        🤟 Let's kick off the day {filteredValue[0].value}
-      </h2>
+      <h2 className="text-2xl font-medium mb-4">🤟 Let's kick off the day</h2>
       <div>
         <label htmlFor="">
           <span className="text-sm font-semibold">Filter: </span>

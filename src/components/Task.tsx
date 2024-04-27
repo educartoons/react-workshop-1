@@ -4,7 +4,7 @@ import Button from "./Button"
 import LevelTag from "./LevelTag"
 import { moveTask } from "../store/kanbanSlice"
 
-type TaskProps = {
+export type TaskProps = {
   task: Task
   namePrevList: TaskTypes | null
   nameCurrentList: TaskTypes

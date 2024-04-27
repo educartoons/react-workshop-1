@@ -53,6 +53,7 @@ redux devtools
 - [x] useMemo
 - [x] useCallback
 - [x] memo
+- [x] creating a custom hooks for debounce values
 
 ## Hooks
 
@@ -65,3 +66,24 @@ redux devtools
 - [x] useCallback
 
 - [x] customHook
+
+## For Unit Testing we will use vitest
+
+```
+pnpm add -D vitest
+```
+
+```
+pnpm add -D @testing-library/react happy-dom
+```
+
+## Test Driven Development
+
+- unit testing [jest, vitest]
+- component testing [@testing-library, enzyme]
+- end-end testing [playwright, cypress, robot]
+
+## The rockstars on ReactJS
+
+- [x] https://overreacted.io/ - Dam Abramov
+- [x] https://addyosmani.com/ - Addy Osmani
